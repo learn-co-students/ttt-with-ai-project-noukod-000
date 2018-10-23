@@ -4,7 +4,7 @@ attr_reader :token
     @token = token
   end
 
-# def move board
-  # puts "Enter a position 1-9 (#{token}) :"
-#   end
+def move board
+   puts "Enter a position 1-9 (#{token}) :"
+   end
 end
