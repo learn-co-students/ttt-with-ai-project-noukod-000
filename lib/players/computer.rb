@@ -1,5 +1,5 @@
 module Players
-  # attr_accessor :m
+
   class Computer < Player
 
     def initialize (token)
