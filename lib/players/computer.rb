@@ -1,8 +1,7 @@
 module Players
   class Computer < Player
     def move board
-      position = STDIN.gets.chomp
-      position
+      "5"
     end
   end
 end

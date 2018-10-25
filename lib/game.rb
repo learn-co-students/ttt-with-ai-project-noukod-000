@@ -57,7 +57,7 @@ class Game
 
   def turn
     puts "Please choose your move between 1-9"
-    position = current_player.move board
+    position = current_player.move @board
     if @board.valid_move? position
       @board.update(position, current_player)
       @board.display
@@ -76,5 +76,10 @@ class Game
     else
       puts "Cat's Game!"
     end
+  end
+
+  def self.start
+    game = Game.new
+    game.play
   end
 end
