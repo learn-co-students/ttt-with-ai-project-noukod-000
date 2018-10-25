@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'pry'
 
 describe 'Game' do
   describe '::WIN_COMBINATIONS' do
@@ -75,6 +76,29 @@ describe 'Game' do
     end
   end
 
+  describe '#over?' do
+    it 'returns true for a draw' do
+      game = Game.new
+      game.board.cells = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
+
+      expect(game.over?).to be_truthy
+    end
+
+    it 'returns true for a won game' do
+      game = Game.new
+      game.board.cells = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
+
+      expect(game.over?).to be_truthy
+    end
+
+    it 'returns false for an in-progress game' do
+      game = Game.new
+      game.board.cells = ["X", " ", "X", " ", "X", " ", "O", "O", " "]
+
+      expect(game.over?).to be_falsey
+    end
+  end
+
   describe '#won?' do
     it 'returns false for a draw' do
       game = Game.new
@@ -83,22 +107,11 @@ describe 'Game' do
       expect(game.won?).to be_falsey
     end
 
-    it 'returns the correct winning combination in the case of a win' do
+    it 'returns true for a win' do
       game = Game.new
-      game.board.cells = ["X", "O", "X",
-                          "O", "O", "X",
-                          "O", "X", "X"]
+      game.board.cells = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
 
-      expect(game.won?).to contain_exactly(2, 5, 8)
-    end
-
-    it "isn't hard-coded" do
-      game = Game.new
-      game.board.cells = ["O", "O", "O",
-                          "X", "X", " ",
-                          " ", " ", "X"]
-
-      expect(game.won?).to contain_exactly(0, 1, 2)
+      expect(game.won?).to be_truthy
     end
   end
 
@@ -125,30 +138,8 @@ describe 'Game' do
     end
   end
 
-  describe '#over?' do
-    it 'returns true for a draw' do
-      game = Game.new
-      game.board.cells = ["X", "O", "X", "O", "X", "X", "O", "X", "O"]
-
-      expect(game.over?).to be_truthy
-    end
-
-    it 'returns true for a won game' do
-      game = Game.new
-      game.board.cells = ["X", "O", "X", "O", "X", "X", "O", "O", "X"]
-
-      expect(game.over?).to be_truthy
-    end
-
-    it 'returns false for an in-progress game' do
-      game = Game.new
-      game.board.cells = ["X", " ", "X", " ", "X", " ", "O", "O", " "]
-
-      expect(game.over?).to be_falsey
-    end
-  end
-
   describe '#winner' do
+
     it 'returns X when X won' do
       game = Game.new
       game.board.cells = ["X", " ", " ", " ", "X", " ", " ", " ", "X"]
@@ -166,7 +157,6 @@ describe 'Game' do
     it 'returns nil when no winner' do
       game = Game.new
       game.board.cells = ["X", "O", " ", " ", " ", " ", " ", "O", "X"]
-
       expect(game.winner).to be_nil
     end
   end
