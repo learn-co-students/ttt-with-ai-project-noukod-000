@@ -55,10 +55,23 @@ def initialize(player_1=Players::Human.new("X"),player_2=Players::Human.new("O")
           user_input=current_player.move @board
           is_move_valid = @board.valid_move?(user_input)
         end
-
-
         @board.update(user_input,current_player)
       end
 
 
+      def play
+
+  puts "You're playing"
+    while !over?
+      turn
+    end
+if winner=="X"
+
+    puts "Congratulations X!"
+    elsif winner=="O"
+      puts "Congratulations O!"
+    else
+      puts "Cat's Game!"
+    end
+end
 end
