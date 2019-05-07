@@ -40,7 +40,7 @@ Remember! The goal at The Flatiron School is not to do, it is to *learn*. Make s
 ├── README.md
 ├── Rakefile
 ├── bin
-│   └── tictactoe
+│   └─ tictactoe
 ├── config
 │   └── environment.rb
 ├── lib
