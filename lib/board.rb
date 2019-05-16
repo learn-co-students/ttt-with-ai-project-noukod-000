@@ -36,6 +36,7 @@ def turn_count
     return counter
 end
 
+<<<<<<< HEAD
 def taken?(pos)
   if position(pos) == "" || position(pos) == " " || position(pos) == nil
     false
@@ -50,6 +51,11 @@ end
 
 def update(input,player)
       valid_move?(input)? @cells[input.to_i - 1] = player.token : @cells[input.to_i - 1] = player.input
+=======
+def taken?(position)
+  pos = position.to_i
+@cells[pos] != " "? true :false
+>>>>>>> ee1b27ee2a0a1086bc55e4646c5d972700533553
 end
 
 end
